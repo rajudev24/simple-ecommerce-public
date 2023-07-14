@@ -36,3 +36,22 @@
   cursor: pointer;
   border-radius: 5px;
 }
+
+.review-container{
+  margin: 40px;
+}
+
+.review-container textarea{
+  width: 400px;
+  height: 100px;
+}
+
+.review-container button{
+  padding: 10px 25px;
+  background-color: tomato;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}

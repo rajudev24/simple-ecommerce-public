@@ -31,7 +31,7 @@ function App() {
 
   const fetchData = async (): Promise<void> => {
     try {
-      const response = await fetch('http://localhost:5000/api/v1/shoe/allshoes');
+      const response = await fetch('https://e-commerce-puce-five.vercel.app/api/v1/shoe/allshoes');
       const jsonData = await response.json() as IShoes;
       setShoes(jsonData);
     } catch (error) {
@@ -46,7 +46,7 @@ function App() {
   const handleReviewSubmit = async (event: React.FormEvent<HTMLFormElement>):Promise<void> => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/v1/shoe/review', {
+      const response = await fetch('https://e-commerce-puce-five.vercel.app/api/v1/shoe/review', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ const email = localStorage.getItem('email');
 
   const handleOrder =async () =>{
     try {
-      const response = await fetch('http://localhost:5000/api/v1/order/create-order', {
+      const response = await fetch('https://e-commerce-puce-five.vercel.app/api/v1/order/create-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -119,10 +119,8 @@ const images = img?.map((image, index) => ({
     <div className='product-details'>
       <h1>{Shoes?.data[0].title}</h1>
       <h3>Brand - {Shoes?.data[0].brand}</h3>
-
-      {selectedSize && sizes && sizes.length > 0 && (
-     
-          <h4>Price: $ {sizes.find((sizeObj) => sizeObj.size === selectedSize)?.price}</h4>
+      { sizes && sizes.length > 0 && (
+          <h4>Price: $ {selectedSize ? sizes.find((sizeObj) => sizeObj.size === selectedSize)?.price : sizes[0].price}</h4>
        
       )}
       {sizes && sizes.length > 0 && (

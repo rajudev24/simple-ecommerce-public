@@ -30,7 +30,7 @@ const navigate = useNavigate()
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    fetch('http://localhost:5000/api/v1/auth/login', {
+    fetch('https://e-commerce-puce-five.vercel.app/api/v1/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -20,7 +20,7 @@ interface IShoes {
 
 function App() {
   const [Shoes, setShoes] = useState<IShoes | null>(null);
-
+  const [selectedSize, setSelectedSize] = useState<number | null>(null);
   useEffect(() => {
    void fetchData();
   }, []);
@@ -35,9 +35,12 @@ function App() {
     }
   };
 
-
+  const handleSizeClick = (size: number) => {
+    setSelectedSize(size);
+  };
 
 const img = Shoes?.data[0].images
+const sizes = Shoes?.data[0].sizes;
 
 const images = img?.map((image, index) => ({
   original: image,
@@ -48,11 +51,39 @@ const images = img?.map((image, index) => ({
 
 
   return (
-    <div >
-      <div >
-        {images && images.length > 0 && <ImageGallery items={images} />}
+    <div className='product-container'>
+      <div  className='product-gallery'>
+        {images && images.length > 0 && <ImageGallery 
+        items={images} 
+        showNav={false}
+         />}
       </div>
-      <div></div>
+      <div className='product-details'>
+        <h1>{Shoes?.data[0].title}</h1>
+        <h3>Brand - {Shoes?.data[0].brand}</h3>
+
+        {selectedSize && sizes && sizes.length > 0 && (
+       
+            <h4>Price: $ {sizes.find((sizeObj) => sizeObj.size === selectedSize)?.price}</h4>
+         
+        )}
+        {sizes && sizes.length > 0 && (
+          <div>
+            <h4>Select Size:</h4>
+            {sizes.map((sizeObj, index) => (
+              <button
+              
+                key={index}
+                onClick={() => handleSizeClick(sizeObj.size)}
+                className={selectedSize === sizeObj.size ? 'selected' : 'size-btn'}
+              >
+                {sizeObj.size}
+              </button>
+            ))}
+          </div>
+        )}
+       <button className='buy-btn'>Order Now</button>
+      </div>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import './App.css'
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
+import Navigation from './shared/Navigation';
 
 interface IShoe  {
   _id: string;
@@ -85,6 +86,7 @@ const images = img?.map((image, index) => ({
 
   return (
     <>
+    <Navigation/>
     <div className='product-container'>
     <div  className='product-gallery'>
       {images && images.length > 0 && <ImageGallery 

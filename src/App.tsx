@@ -70,7 +70,29 @@ function App() {
   const handleReviewTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReviewText(event.target.value);
   };
+const email = localStorage.getItem('email');
 
+  const handleOrder =async () =>{
+    try {
+      const response = await fetch('http://localhost:5000/api/v1/order/create-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          productId: Shoes?.data[0]._id,
+          title: Shoes?.data[0].title,
+          email: email
+        })
+      });
+      if(response.status === 200){
+        alert('Order place done!')
+        setReviewText('')
+      }
+    } catch (error) {
+      console.error('Error submitting review:', error);
+    }
+  }
 
 const img = Shoes?.data[0].images
 const sizes = Shoes?.data[0].sizes;
@@ -118,7 +140,7 @@ const images = img?.map((image, index) => ({
           ))}
         </div>
       )}
-     <button className='buy-btn'>Order Now</button>
+     <button onClick={()=> handleOrder()} className='buy-btn'>Order Now</button>
     </div>
   </div>
   <div className='review-container'>

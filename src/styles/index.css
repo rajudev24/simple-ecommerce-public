@@ -1,0 +1,44 @@
+
+
+.from-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.from-container input{
+    width: 300px;
+    height: 30px;
+    margin-top: 10px;
+}
+.from-container button{
+    margin-top: 10px;
+    padding: 10px 25px;
+    border: none;
+    background-color: tomato;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.from-container a{
+    text-decoration: none;
+   padding-left: 10px;
+}
+
+.navigation-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.navigation-container button{
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    font-size: 1.5rem;
+    background-color: tomato;
+    color: white;
+    cursor: pointer;
+}
